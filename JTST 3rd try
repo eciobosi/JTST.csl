@@ -137,7 +137,7 @@
         <text macro="container-title"/>
         <text macro="editor"/>
         <text macro="edition"/>
-        <choose>
+      <choose>
   <if type="book chapter paper-conference thesis" match="any">
     <text macro="publisher"/>
   </if>
