@@ -128,19 +128,44 @@
       <text variable="citation-number"/>
     </layout>
   </citation>
-  <bibliography entry-spacing="0" second-field-align="flush" et-al-min="31" et-al-use-first="30">
+<bibliography entry-spacing="0" second-field-align="flush" et-al-min="31" et-al-use-first="30">
   <layout suffix=".">
     <text variable="citation-number" suffix=". "/>
     <choose>
-      <if type="chapter paper-conference" match="any">
+      
+      <!-- BOOK CHAPTER -->
+      <if type="chapter">
         <group delimiter=", ">
           <text macro="author"/>
           <text macro="title"/>
           <text variable="container-title" font-style="italic"/>
           <text macro="edition"/>
-          <text macro="editor"/>
+          <names variable="editor">
+            <label form="short" prefix="Ed: "/>
+            <name and="text" initialize-with="."/>
+          </names>
+          <text macro="publisher"/>
+          <text macro="year-date"/>
+          <text macro="pages"/>
+          <text macro="access"/>
+        </group>
+      </if>
+      
+      <!-- CONFERENCE PAPER -->
+      <else-if type="paper-conference">
+        <group delimiter=", ">
+          <text macro="author"/>
+          <text macro="title"/>
+          <text variable="container-title" font-style="italic"/>
+          <text macro="edition"/>
+          <names variable="editor">
+            <label form="short" prefix="Ed: "/>
+            <name and="text" initialize-with="."/>
+          </names>
           <group delimiter=" ">
             <date variable="event-date">
+              <date-part name="day" suffix=" "/>
+              <date-part name="month" suffix=" "/>
               <date-part name="year"/>
             </date>
             <text variable="event-place" prefix="(" suffix=")"/>
@@ -149,19 +174,11 @@
           <text macro="publisher"/>
           <text macro="year-date"/>
           <text macro="pages"/>
-        </group>
-      </if>
-      <else-if type="book">
-        <group delimiter=", ">
-          <text macro="author"/>
-          <text variable="title" font-style="italic"/>
-          <text macro="edition"/>
-          <text macro="editor"/>
-          <text macro="publisher"/>
-          <text macro="year-date"/>
-          <text macro="pages"/>
+          <text macro="access"/>
         </group>
       </else-if>
+
+      <!-- EVERYTHING ELSE -->
       <else>
         <group delimiter=", ">
           <text macro="author"/>
@@ -176,6 +193,7 @@
           <text macro="access"/>
         </group>
       </else>
+
     </choose>
   </layout>
 </bibliography>
