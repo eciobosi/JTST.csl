@@ -45,16 +45,16 @@
       </else>
     </choose>
   </macro>
-  <macro name="title">
-    <choose>
-      <if type="article-journal chapter" match="any">
-        <text variable="title" text-case="title"/>
-      </if>
-      <else>
-        <text variable="title" quotes="true" text-case="title"/>
-      </else>
-    </choose>
-  </macro>
+ <macro name="title">
+  <choose>
+    <if type="article-journal chapter paper-conference" match="any">
+      <text variable="title" text-case="title"/>
+    </if>
+    <else>
+      <text variable="title" quotes="true" text-case="title"/>
+    </else>
+  </choose>
+</macro>
   <macro name="container-title">
     <choose>
       <if type="article-journal">
@@ -129,24 +129,54 @@
     </layout>
   </citation>
   <bibliography entry-spacing="0" second-field-align="flush" et-al-min="31" et-al-use-first="30">
-    <layout suffix=".">
-      <text variable="citation-number" suffix=". "/>
-      <group delimiter=", ">
-        <text macro="author"/>
-        <text macro="title"/>
-        <text macro="container-title"/>
-        <text macro="editor"/>
-        <text macro="edition"/>
-      <choose>
-  <if type="book chapter paper-conference thesis" match="any">
-    <text macro="publisher"/>
-  </if>
-</choose>
-        <text macro="year-date"/>
-        <text macro="journal-locators"/>
-        <text macro="pages"/>
-        <text macro="access"/>
-      </group>
-    </layout>
-  </bibliography>
+  <layout suffix=".">
+    <text variable="citation-number" suffix=". "/>
+    <choose>
+      <if type="chapter paper-conference" match="any">
+        <group delimiter=", ">
+          <text macro="author"/>
+          <text macro="title"/>
+          <text variable="container-title" font-style="italic"/>
+          <text macro="edition"/>
+          <text macro="editor"/>
+          <group delimiter=" ">
+            <date variable="event-date">
+              <date-part name="year"/>
+            </date>
+            <text variable="event-place" prefix="(" suffix=")"/>
+          </group>
+          <text variable="event"/>
+          <text macro="publisher"/>
+          <text macro="year-date"/>
+          <text macro="pages"/>
+        </group>
+      </if>
+      <else-if type="book">
+        <group delimiter=", ">
+          <text macro="author"/>
+          <text variable="title" font-style="italic"/>
+          <text macro="edition"/>
+          <text macro="editor"/>
+          <text macro="publisher"/>
+          <text macro="year-date"/>
+          <text macro="pages"/>
+        </group>
+      </else-if>
+      <else>
+        <group delimiter=", ">
+          <text macro="author"/>
+          <text macro="title"/>
+          <text macro="container-title"/>
+          <text macro="editor"/>
+          <text macro="edition"/>
+          <text macro="publisher"/>
+          <text macro="year-date"/>
+          <text macro="journal-locators"/>
+          <text macro="pages"/>
+          <text macro="access"/>
+        </group>
+      </else>
+    </choose>
+  </layout>
+</bibliography>
 </style>
