@@ -45,13 +45,13 @@
       </else>
     </choose>
   </macro>
- <macro name="title">
+<macro name="title">
   <choose>
-    <if type="article-journal chapter paper-conference" match="any">
+    <if type="article-journal">
       <text variable="title" text-case="title"/>
     </if>
     <else>
-      <text variable="title" quotes="true" text-case="title"/>
+      <text variable="title" text-case="title"/>
     </else>
   </choose>
 </macro>
@@ -134,22 +134,22 @@
     <choose>
       
       <!-- BOOK CHAPTER -->
-      <if type="chapter">
-        <group delimiter=", ">
-          <text macro="author"/>
-          <text macro="title"/>
-          <text variable="container-title" font-style="italic"/>
-          <text macro="edition"/>
-          <names variable="editor">
-            <label form="short" prefix="Ed: "/>
-            <name and="text" initialize-with="."/>
-          </names>
-          <text macro="publisher"/>
-          <text macro="year-date"/>
-          <text macro="pages"/>
-          <text macro="access"/>
-        </group>
-      </if>
+<if type="chapter">
+  <group delimiter=", ">
+    <text macro="author"/>
+    <text macro="title"/>
+    <text variable="container-title" font-style="italic"/>
+    <text macro="edition"/>
+    <names variable="editor">
+      <label form="short" prefix="Ed: "/>
+      <name and="text" initialize-with="."/>
+    </names>
+    <text macro="publisher"/>
+    <text macro="year-date"/>
+    <text macro="pages"/>
+    <text macro="access"/>
+  </group>
+</if>
       
       <!-- CONFERENCE PAPER -->
       <else-if type="paper-conference">
