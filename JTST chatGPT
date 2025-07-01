@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="en">
+  <info>
+    <title>Journal of Thermal Spray Technology (JTST) Custom</title>
+    <id>http://www.zotero.org/styles/jtst-custom</id>
+    <link href="http://www.zotero.org/styles/jtst-custom" rel="self"/>
+    <author>
+      <name>Ecio Bosi / ChatGPT</name>
+    </author>
+    <category citation-format="numeric"/>
+    <summary>Custom style for JTST with numeric citations prefixed by “Ref” in parentheses.</summary>
+    <updated>2025-07-01T00:00:00Z</updated>
+  </info>
+
+  <!-- CITATION -->
+  <citation>
+    <layout prefix="(" suffix=")" delimiter=", ">
+      <group delimiter=", ">
+        <text prefix="Ref " variable="citation-number" />
+        <text range-delimiter="-" variable="citation-number"/>
+      </group>
+    </layout>
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+  </citation>
+
+  <!-- BIBLIOGRAPHY -->
+  <bibliography hanging-indent="true" line-spacing="1.2" entry-spacing="0">
+    <layout>
+      <!-- AUTHORS: All authors, initials and last names -->
+      <names variable="author">
+        <name and="text" initialize-with=". " delimiter=", " sort-separator=", "/>
+        <label form="short" prefix=", "/>
+      </names>
+      <text variable="title" font-style="normal" text-case="title" prefix=", "/>
+
+      <!-- ARTICLES -->
+      <group prefix=", " suffix=", ">
+        <text variable="container-title" font-style="italic" form="short"/>
+        <text variable="issued" prefix=", " form="year"/>
+        <group delimiter=", ">
+          <text variable="volume" prefix=", " font-weight="bold"/>
+          <text variable="issue" prefix="(" suffix=")"/>
+          <text variable="page" prefix=", p "/>
+        </group>
+      </group>
+
+      <!-- LANGUAGE (for articles in other languages) -->
+      <group prefix=", (" suffix=")" delimiter=", ">
+        <text variable="language" form="short" strip-periods="true" text-case="lowercase"/>
+      </group>
+
+      <text suffix="."/>
+    </layout>
+  </bibliography>
+
+  <!-- SORT BIBLIOGRAPHY BY CITATION ORDER -->
+  <sort>
+    <key variable="citation-number"/>
+  </sort>
+
+  <!-- Specifics for book chapters, theses, standards, online docs can be further detailed with macros and conditional terms -->
+
+</style>
