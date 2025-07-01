@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <info>
+    …
+  </info>
+
+  <!-- … your existing macros … -->
+
+  <!-- 1. New macro to output the DOI whenever present -->
+  <macro name="doi">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="doi:"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- 2. Adjust access macro: only for URL when no DOI -->
+  <macro name="access">
+    <choose>
+      <if variable="DOI">
+        <!-- If DOI exists, nothing more to do -->
+      </if>
+      <else>
+        <choose>
+          <if variable="URL">
+            <group delimiter=". ">
+              <text variable="URL"/>
+              <group delimiter=" ">
+                <text term="accessed" text-case="capitalize-first"/>
+                <date variable="accessed">
+                  <date-part name="day" form="numeric" suffix=" "/>
+                  <date-part name="month" suffix=" "/>
+                  <date-part name="year" form="long"/>
+                </date>
+              </group>
+            </group>
+          </if>
+        </choose>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- … rest of your macros … -->
+
+  <citation collapse="citation-number">
+    …
+  </citation>
+
+  <bibliography entry-spacing="0" second-field-align="flush" et-al-min="31" et-al-use-first="30">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <group delimiter=", ">
+        <text macro="author"/>
+        <text macro="title"/>
+        <text macro="container-title"/>
+        <text macro="journal-locators"/>
+        <text macro="pages"/>
+        <!-- 3. Always inject DOI here -->
+        <text macro="doi" prefix=", "/>
+        <!-- And, only if no DOI, fall back to URL/access -->
+        <text macro="access" prefix=", "/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
