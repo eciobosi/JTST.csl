@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style
+    xmlns="http://purl.org/net/xbiblio/csl"
+    version="1.0"
+    class="note"
+    default-locale="en"
+>
+  <info>
+    <title>Journal of Thermal Spray Technology (JTST) Custom Numeric</title>
+    <id>http://www.zotero.org/styles/jtst-custom-numeric</id>
+    <link href="http://www.zotero.org/styles/jtst-custom-numeric" rel="self"/>
+    <author>
+      <name>Ecio Bosi / ChatGPT</name>
+    </author>
+    <category citation-format="numeric"/>
+    <summary>JTST numeric citation style with (Ref #, #–#) format, full author names, and journal abbreviations.</summary>
+    <updated>2025-07-01T00:00:00Z</updated>
+  </info>
+
+  <!-- CITATION -->
+  <citation>
+    <layout prefix="(" suffix=")" delimiter=", ">
+      <group delimiter=", ">
+        <text prefix="Ref " variable="citation-number"/>
+        <text range-delimiter="-" variable="citation-number"/>
+      </group>
+    </layout>
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+  </citation>
+
+  <!-- BIBLIOGRAPHY -->
+  <bibliography hanging-indent="true" line-spacing="1.2" entry-spacing="0">
+    <layout suffix=".">
+      <names variable="author" delimiter=", ">
+        <name initialize-with=". " and="text" sort-separator=", "/>
+      </names>
+      <text variable="title" prefix=", " text-case="title" font-style="normal"/>
+      <group delimiter=", " prefix=", ">
+        <text variable="container-title" font-style="italic" form="short"/>
+        <text variable="issued" form="year" prefix=", "/>
+        <text variable="volume" font-weight="bold" prefix=", "/>
+        <text variable="issue" prefix="(" suffix=")"/>
+        <text variable="page" prefix=", p "/>
+      </group>
+      <group prefix=", (" suffix=")" delimiter=", ">
+        <text variable="language" text-case="lowercase" strip-periods="true"/>
+      </group>
+    </layout>
+  </bibliography>
+
+  <sort>
+    <key variable="citation-number"/>
+  </sort>
+</style>
