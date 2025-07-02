@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>Journal of Thermal Spray Technology - Correct</title>
+    <title>Journal of Thermal Spray Technology - Correct 2</title>
     <title-short>J Therm Spray Tech</title-short>
     <id>http://www.zotero.org/styles/journal-of-thermal-spray-technology</id>
     <link href="http://www.zotero.org/styles/journal-of-thermal-spray-technology" rel="self"/>
@@ -101,11 +101,21 @@
       </if>
     </choose>
   </macro>
-  <macro name="pages">
-    <group delimiter=" ">
-      <text term="page" form="short" strip-periods="true"/>
-      <text variable="page"/>
-    </group>
+   <macro name="pages">
+    <choose>
+      <if variable="page">
+        <choose>
+          <!-- If page contains a dash, it's a page range -->
+          <if test="contains(page, '-')">
+            <text variable="page" prefix=", p "/>
+          </if>
+          <!-- Otherwise, treat it as article number or single page -->
+          <else>
+            <text variable="page" prefix=", "/>
+          </else>
+        </choose>
+      </if>
+    </choose>
   </macro>
   <macro name="edition">
     <choose>
