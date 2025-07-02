@@ -101,15 +101,15 @@
       </if>
     </choose>
   </macro>
-   <macro name="pages">
+     <macro name="pages">
     <choose>
       <if variable="page">
         <choose>
-          <!-- If page contains a dash, it's a page range -->
-          <if test="contains(page, '-')">
+          <!-- If the page is NOT numeric (e.g., contains a dash), treat as range -->
+          <if is-numeric="page" match="none">
             <text variable="page" prefix=", p "/>
           </if>
-          <!-- Otherwise, treat it as article number or single page -->
+          <!-- If page is numeric (e.g., "4"), treat as article number with no prefix -->
           <else>
             <text variable="page" prefix=", "/>
           </else>
