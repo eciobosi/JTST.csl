@@ -101,15 +101,15 @@
       </if>
     </choose>
   </macro>
-     <macro name="pages">
+    <macro name="pages">
     <choose>
       <if variable="page">
         <choose>
-          <!-- If the page is NOT numeric (e.g., contains a dash), treat as range -->
+          <!-- If page is NOT numeric (e.g., contains a dash), treat as range -->
           <if is-numeric="page" match="none">
             <text variable="page" prefix=", p "/>
           </if>
-          <!-- If page is numeric (e.g., "4"), treat as article number with no prefix -->
+          <!-- If page IS numeric (e.g., "4"), treat as article number -->
           <else>
             <text variable="page" prefix=", "/>
           </else>
